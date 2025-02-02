@@ -1,6 +1,6 @@
 name: "Generate Podcast feeds"
 author: "Ray Villalobos"
-description: "Generates a feed for a podcast from a yaml file "
+description: "Generates a feed for a podcast from a yaml file"
 runs:
   using: "docker"
   image: "dockerfile"
@@ -9,10 +9,10 @@ branding:
   color: "red"
 inputs:
   email:
-    description: The Commiter's email address
+    description: "The Commiter's email address"
     required: true
-    default: ${{github.actor}}@localhost
-committer_name:
-  description: The commiter's name 
-  required: true
-  default: ${{github.actor}}
+    default: ${{ github.actor }}@localhost
+  committer_name:
+    description: "The committer's name"
+    required: true
+    default: ${{ github.actor }}
