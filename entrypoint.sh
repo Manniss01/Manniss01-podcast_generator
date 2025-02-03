@@ -1,16 +1,20 @@
 #!/bin/bash
+set -e  # Exit on error
 
 echo "====================="
+echo "Configuring Git user..."
 git config --global user.name "${GITHUB_ACTOR}"
 git config --global user.email "${INPUT_EMAIL}"
 
-git config --global  --add safe.directory /github/workspace
+# Ensure workspace is a safe directory
+git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-python /urs/bin/feed.py
+echo "Running Python script..."
+python3 /usr/bin/feed.py
 
-git add -A && git commit -m "update feed"
-git push --set-upstrem origin main
-
+echo "Adding and committing changes..."
+git add -A
+git commit -m "update feed" || echo "No changes to commit"
+git push --set-upstream origin main
 
 echo "========= Finished Task ============"
-
